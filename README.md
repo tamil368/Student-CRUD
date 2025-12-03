@@ -4,7 +4,9 @@
 
 Follow these steps to run the project on your system:
 
-1. **Install required NuGet packages**
+1. **Install required packages**
+2. -- cd crud
+3. -- Open cmd And execute the following command's  
    ```bash
    dotnet add package Microsoft.EntityFrameworkCore.Design --version 9.0.0
    dotnet add package Microsoft.EntityFrameworkCore --version 9.0.0
@@ -13,22 +15,22 @@ Follow these steps to run the project on your system:
    dotnet add package Pomelo.EntityFrameworkCore.MySql --version 9.0.0
    ```
 
-2. **Create database migrations**
+4. **Create database migrations**
    ```bash
    dotnet ef migrations add InitialCreate
    ```
 
-3. **Update the database**
+5. **Update the database**
    ```bash
    dotnet ef database update
    ```
 
-4. **Run the application**
+6. **Run the application**
    ```bash
    dotnet run
    ```
 
-5. **Open in browser**
+7. **Open in browser**
    ```
    http://localhost:5003
    ```
