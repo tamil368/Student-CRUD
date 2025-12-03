@@ -45,9 +45,7 @@ Follow these steps to run the project on your system:
 - MySQL Database 
 - Bootstrap
 - C#
-
---
-
+  
 ## Assumptions & Limitations
 
 ### Assumptions
