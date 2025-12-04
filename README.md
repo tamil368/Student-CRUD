@@ -30,10 +30,10 @@ Follow these steps to run the project on your system:
    dotnet run
    ```
 
-7. **Open in browser**
-   ```
-   http://localhost:5003
-   ```
+7. **Edit the Db Configuration**
+```bash
+"DefaultConnection":"Server=127.0.0.1;Port=3307;Database=Students;Uid=root;Pwd="yourpassword";"
+```
 
 
 
