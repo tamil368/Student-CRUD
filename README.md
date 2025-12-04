@@ -32,7 +32,7 @@ Follow these steps to run the project on your system:
 
 7. **Edit the Db Configuration**
 ```bash
-"DefaultConnection":"Server=127.0.0.1;Port=3307;Database=Students;Uid=root;Pwd="yourpassword";"
+"DefaultConnection":"Server=127.0.0.1;Port=3307;Database=Students;Uid=root;Pwd=yourpassword;"
 ```
 
 
