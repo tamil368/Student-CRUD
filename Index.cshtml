@@ -1,0 +1,56 @@
+@{
+    ViewData["Title"] = "Students List";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Student List</h2>
+        <a class="btn btn-primary" href="/Students/Create">Add New Student</a>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>DOB</th>
+                <th>Gender</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="studentsBody">
+            
+        </tbody>
+    </table>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    fetch("/Students/GetStudents")
+        .then(res => res.json())
+        .then(data => {
+            let body = document.getElementById("studentsBody");
+            body.innerHTML = "";
+
+            data.forEach(s => {
+                body.innerHTML += `
+                <tr>
+                    <td>${s.name}</td>
+                    <td>${s.email}</td>
+                    <td>${s.phoneNumber}</td>
+                    <td>${s.dateOfBirth.split('T')[0]}</td>
+                    <td>${s.gender}</td>
+                    <td>${s.address}</td>
+                    <td>
+                        <a href="/Students/Update?id=${s.id}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="/Students/Details?id=${s.id}" class="btn btn-info btn-sm">View</a>
+                        <a href="/Students/Delete?id=${s.id}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>`;
+            });
+        });
+});
+</script>

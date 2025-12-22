@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Delete Student";
+}
+
+<div class="container mt-4">
+    <h4 class="text-danger">Are you sure you want to delete this student?</h4>
+
+    <table class="table table-bordered mt-3">
+        <tr><th>Name</th><td id="name"></td></tr>
+        <tr><th>Email</th><td id="email"></td></tr>
+        <tr><th>Phone</th><td id="phone"></td></tr>
+        <tr><th>DOB</th><td id="dob"></td></tr>
+        <tr><th>Gender</th><td id="gender"></td></tr>
+        <tr><th>Address</th><td id="address"></td></tr>
+    </table>
+
+    <form method="post" action="/Students/Delete">
+        <input type="hidden" name="id" id="Id" />
+
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="/Students/Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+<script>
+    const id = new URLSearchParams(window.location.search).get("id");
+
+    fetch(`/Students/GetStudentById?id=${id}`)
+        .then(res => res.json())
+        .then(s => {
+            document.getElementById("Id").value = s.id;
+
+            document.getElementById("name").innerText = s.name;
+            document.getElementById("email").innerText = s.email;
+            document.getElementById("phone").innerText = s.phoneNumber;
+            document.getElementById("dob").innerText = s.dateOfBirth.split('T')[0];
+            document.getElementById("gender").innerText = s.gender;
+            document.getElementById("address").innerText = s.address;
+        })
+        .catch(err => console.error(err));
+</script>

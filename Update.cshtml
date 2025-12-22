@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "Update Student";
+}
+
+<div class="container mt-4">
+    <h2>Update Student</h2>
+
+    <form method="post" action="/Students/Update">
+        <input type="hidden" name="Id" id="Id" />
+
+        <input class="form-control mb-2" name="Name" id="Name" placeholder="Name" />
+        <input class="form-control mb-2" name="Email" id="Email" placeholder="Email" />
+        <input class="form-control mb-2" name="PhoneNumber" id="PhoneNumber" placeholder="Phone" />
+        <input type="date" class="form-control mb-2" name="DateOfBirth" id="DateOfBirth" />
+        <input class="form-control mb-2" name="Gender" id="Gender" placeholder="Gender" />
+        <textarea class="form-control mb-2" name="Address" id="Address"></textarea>
+
+        <button class="btn btn-success">Update</button>
+        <a href="/Students/Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+<script>
+const id = new URLSearchParams(window.location.search).get("id");
+
+fetch(`/Students/GetStudentById?id=${id}`)
+    .then(res => res.json())
+    .then(s => {
+        Id.value = s.id;
+        Name.value = s.name;
+        Email.value = s.email;
+        PhoneNumber.value = s.phoneNumber;
+        DateOfBirth.value = s.dateOfBirth.split('T')[0];
+        Gender.value = s.gender;
+        Address.value = s.address;
+    });
+</script>

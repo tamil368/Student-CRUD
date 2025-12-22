@@ -1,0 +1,38 @@
+@{
+    ViewData["Title"] = "Student Details";
+}
+
+<div class="container mt-4">
+    <h2>Student Details</h2>
+
+    <table class="table table-bordered">
+        <tr><th>Name</th><td id="name"></td></tr>
+        <tr><th>Email</th><td id="email"></td></tr>
+        <tr><th>Phone</th><td id="phone"></td></tr>
+        <tr><th>DOB</th><td id="dob"></td></tr>
+        <tr><th>Gender</th><td id="gender"></td></tr>
+        <tr><th>Address</th><td id="address"></td></tr>
+    </table>
+
+    <a href="/Students/Index" class="btn btn-secondary">Back</a>
+    <a id="editBtn" class="btn btn-warning btn-sm">Edit</a>
+    <a id="deleteBtn" class="btn btn-danger btn-sm">Delete</a>
+</div>
+
+<script>
+    const id = new URLSearchParams(window.location.search).get("id");
+
+    fetch(`/Students/GetStudentById?id=${id}`)
+        .then(res => res.json())
+        .then(s => {
+            document.getElementById("name").innerText = s.name;
+            document.getElementById("email").innerText = s.email;
+            document.getElementById("phone").innerText = s.phoneNumber;
+            document.getElementById("dob").innerText = s.dateOfBirth.split('T')[0];
+            document.getElementById("gender").innerText = s.gender;
+            document.getElementById("address").innerText = s.address;
+            document.getElementById("editBtn").href = `/Students/Update?id=${s.id}`;
+            document.getElementById("deleteBtn").href = `/Students/Delete?id=${s.id}`;
+        })
+        .catch(err => console.error(err));
+</script>
